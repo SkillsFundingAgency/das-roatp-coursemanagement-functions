@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.Roatp.CourseManagement.Functions", "SFA.DAS.Roatp.CourseManagement.Functions\SFA.DAS.Roatp.CourseManagement.Functions.csproj", "{E05469B6-E8F9-464A-ABEB-7D6AAF56DD1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.Roatp.CourseManagement.Jobs", "SFA.DAS.Roatp.CourseManagement.Jobs\SFA.DAS.Roatp.CourseManagement.Jobs.csproj", "{273A086C-8B32-4272-BF62-6E7542D4CB67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E05469B6-E8F9-464A-ABEB-7D6AAF56DD1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E05469B6-E8F9-464A-ABEB-7D6AAF56DD1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E05469B6-E8F9-464A-ABEB-7D6AAF56DD1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E05469B6-E8F9-464A-ABEB-7D6AAF56DD1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{273A086C-8B32-4272-BF62-6E7542D4CB67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{273A086C-8B32-4272-BF62-6E7542D4CB67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{273A086C-8B32-4272-BF62-6E7542D4CB67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{273A086C-8B32-4272-BF62-6E7542D4CB67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

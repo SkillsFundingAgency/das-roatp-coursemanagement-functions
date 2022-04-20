@@ -7,11 +7,11 @@ using SFA.DAS.NLog.Targets.Redis.DotNetCore;
 using System;
 using System.IO;
 
-namespace SFA.DAS.Roatp.CourseManagement.Functions
+namespace SFA.DAS.Roatp.CourseManagement.Jobs
 {
-    public class NLogConfiguration
+    public static class NLogConfiguration
     {
-        public void ConfigureNLog()
+        public static void ConfigureNLog()
         {
             var appName = "das-roatp-coursemanagement-functions";
             var env = Environment.GetEnvironmentVariable("EnvironmentName");

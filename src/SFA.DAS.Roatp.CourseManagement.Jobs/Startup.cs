@@ -5,23 +5,22 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
 using SFA.DAS.Configuration.AzureTableStorage;
-using SFA.DAS.Roatp.CourseManagement.Functions;
+using SFA.DAS.Roatp.CourseManagement.Jobs;
 
 [assembly: FunctionsStartup(typeof(Startup))]
-namespace SFA.DAS.Roatp.CourseManagement.Functions
+namespace SFA.DAS.Roatp.CourseManagement.Jobs
 {
     internal class Startup : FunctionsStartup
     {
+        private IConfiguration _configuration;
         public override void Configure(IFunctionsHostBuilder builder)
         {
-            var configuration = BuildConfiguration(builder);
+            _configuration = BuildConfiguration(builder);
 
             AddNLog(builder);
         }
         private static void AddNLog(IFunctionsHostBuilder builder)
         {
-            var nLogConfiguration = new NLogConfiguration();
-
             builder.Services.AddLogging((options) =>
             {
                 options.AddFilter(typeof(Startup).Namespace, LogLevel.Information);
@@ -33,7 +32,7 @@ namespace SFA.DAS.Roatp.CourseManagement.Functions
                 });
                 options.AddConsole();
 
-                nLogConfiguration.ConfigureNLog();
+                NLogConfiguration.ConfigureNLog();
             });
         }
 
@@ -48,7 +47,7 @@ namespace SFA.DAS.Roatp.CourseManagement.Functions
             {
                 configBuilder.AddAzureTableStorage(options =>
                 {
-                    options.ConfigurationKeys = new[] { "SFA.DAS.Roatp.CourseManagement.Functions" };
+                    options.ConfigurationKeys = new[] { "SFA.DAS.Roatp.CourseManagement.Jobs" };
                     options.StorageConnectionString = configuration["ConfigurationStorageConnectionString"];
                     options.EnvironmentName = configuration["EnvironmentName"];
                     options.PreFixConfigurationKeys = false;
