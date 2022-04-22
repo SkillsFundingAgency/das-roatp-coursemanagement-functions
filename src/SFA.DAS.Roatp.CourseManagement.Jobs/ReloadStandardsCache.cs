@@ -12,13 +12,13 @@ namespace SFA.DAS.Roatp.CourseManagement.Jobs
 {
     public  class ReloadStandardsCache
     {
-        private readonly IGetAllCoursesApiClient _getAllCoursesApiClient;
+        private readonly ICoursesGetAllApiClient _coursesGetAllApiClient;
         private readonly IRoatpV2UpdateCourseDetailsApiClient _roatpV2UpdateCourseDetailsApiClient;
 
 
-        public ReloadStandardsCache(IGetAllCoursesApiClient getAllCoursesApiClient, IRoatpV2UpdateCourseDetailsApiClient roatpV2UpdateCourseDetailsApiClient)
+        public ReloadStandardsCache(ICoursesGetAllApiClient coursesGetAllApiClient, IRoatpV2UpdateCourseDetailsApiClient roatpV2UpdateCourseDetailsApiClient)
         {
-            _getAllCoursesApiClient = getAllCoursesApiClient;
+            _coursesGetAllApiClient = coursesGetAllApiClient;
             _roatpV2UpdateCourseDetailsApiClient = roatpV2UpdateCourseDetailsApiClient;
         }
 
@@ -34,7 +34,7 @@ namespace SFA.DAS.Roatp.CourseManagement.Jobs
 
             log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
 
-            var courseList = await _getAllCoursesApiClient.GetAllCourses();
+            var courseList = await _coursesGetAllApiClient.GetAllCourses();
             var coursesRequest = new CoursesRequest { Courses = courseList.Standards };
             var result = await _roatpV2UpdateCourseDetailsApiClient.UpdateCoursesDetails(coursesRequest);
 
