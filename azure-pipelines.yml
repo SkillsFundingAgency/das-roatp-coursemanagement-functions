@@ -77,7 +77,7 @@ stages:
   variables:
   - group: DevTest Management Resources
   - group: TEST2 DevTest Shared Resources
-   jobs:
+  jobs:
    - template: pipeline-templates/job/deploy.yml
      parameters:
        Environment: TEST2
