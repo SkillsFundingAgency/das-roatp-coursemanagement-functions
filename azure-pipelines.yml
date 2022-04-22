@@ -84,13 +84,13 @@ stages:
        SolutionBaseName: $(SolutionBaseName)
        ServiceConnection: SFA-DAS-DevTest-ARM
 
- - stage: Deploy_PP
-   dependsOn: Build
-   displayName: Deploy to PP
-   variables:
-   - group: PreProd Management Resources
-   - group: PreProd Shared Resources
-   jobs:
+- stage: Deploy_PP
+  dependsOn: Build
+  displayName: Deploy to PP
+  variables:
+  - group: PreProd Management Resources
+  - group: PreProd Shared Resources
+  jobs:
    - template: pipeline-templates/job/deploy.yml
      parameters:
        Environment: PP
