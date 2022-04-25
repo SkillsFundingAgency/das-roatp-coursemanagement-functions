@@ -3,8 +3,8 @@ using SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.RoatpV2;
 
 namespace SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients
 {
-    public interface IRoatpV2UpdateCourseDetailsApiClient
+    public interface IRoatpV2UpdateStandardDetailsApiClient
     {
-        Task<bool> UpdateCoursesDetails(CoursesRequest coursesRequest);
+        Task<bool> ReloadStandardsDetails(StandardsRequest standardsRequest);
     }
 }

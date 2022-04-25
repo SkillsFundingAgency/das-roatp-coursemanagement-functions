@@ -12,14 +12,14 @@ namespace SFA.DAS.Roatp.CourseManagement.Jobs
 {
     public  class ReloadStandardsCache
     {
-        private readonly ICoursesGetAllApiClient _coursesGetAllApiClient;
-        private readonly IRoatpV2UpdateCourseDetailsApiClient _roatpV2UpdateCourseDetailsApiClient;
+        private readonly IStandardsGetAllApiClient _standardsGetAllApiClient;
+        private readonly IRoatpV2UpdateStandardDetailsApiClient _roatpV2UpdateStandardDetailsApiClient;
 
 
-        public ReloadStandardsCache(ICoursesGetAllApiClient coursesGetAllApiClient, IRoatpV2UpdateCourseDetailsApiClient roatpV2UpdateCourseDetailsApiClient)
+        public ReloadStandardsCache(IStandardsGetAllApiClient standardsGetAllApiClient, IRoatpV2UpdateStandardDetailsApiClient roatpV2UpdateStandardDetailsApiClient)
         {
-            _coursesGetAllApiClient = coursesGetAllApiClient;
-            _roatpV2UpdateCourseDetailsApiClient = roatpV2UpdateCourseDetailsApiClient;
+            _standardsGetAllApiClient = standardsGetAllApiClient;
+            _roatpV2UpdateStandardDetailsApiClient = roatpV2UpdateStandardDetailsApiClient;
         }
 
 
@@ -32,11 +32,11 @@ namespace SFA.DAS.Roatp.CourseManagement.Jobs
             )] TimerInfo myTimer, ILogger log)
         {
 
-            log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
+            log.LogInformation($"ReloadStandardsCache function executed at: {DateTime.Now}");
 
-            var courseList = await _coursesGetAllApiClient.GetAllCourses();
-            var coursesRequest = new CoursesRequest { Courses = courseList.Standards };
-            var result = await _roatpV2UpdateCourseDetailsApiClient.UpdateCoursesDetails(coursesRequest);
+            var standardList = await _standardsGetAllApiClient.GetAllStandards();
+            var standardsRequest = new StandardsRequest { Standards = standardList.Standards };
+            var result = await _roatpV2UpdateStandardDetailsApiClient.ReloadStandardsDetails(standardsRequest);
 
         }
     }

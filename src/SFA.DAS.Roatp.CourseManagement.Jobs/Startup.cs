@@ -66,9 +66,7 @@ namespace SFA.DAS.Roatp.CourseManagement.Jobs
             builder.Services.AddOptions(); 
 
             builder.Services.Configure<RoatpV2ApiConfiguration>(config.GetSection(nameof(RoatpV2ApiConfiguration)));
-            builder.Services.AddSingleton(cfg => cfg.GetService<IOptions<RoatpV2ApiConfiguration>>().Value);
             builder.Services.Configure<CoursesApiConfiguration>(config.GetSection(nameof(CoursesApiConfiguration)));
-            builder.Services.AddSingleton(cfg => cfg.GetService<IOptions<CoursesApiConfiguration>>().Value);
 
             return config;
         }
@@ -79,7 +77,7 @@ namespace SFA.DAS.Roatp.CourseManagement.Jobs
              var acceptHeaderValue = "application/json";
              var handlerLifeTime = TimeSpan.FromMinutes(5);
         
-             builder.Services.AddHttpClient<ICoursesGetAllApiClient, CoursesGetAllApiClient>((serviceProvider, httpClient) =>
+             builder.Services.AddHttpClient<IStandardsGetAllApiClient, StandardsGetAllApiClient>((serviceProvider, httpClient) =>
                  {
                      var coursesApiConfiguration = serviceProvider.GetService<IOptions<CoursesApiConfiguration>>().Value;
                      httpClient.BaseAddress = new Uri(coursesApiConfiguration.Url);
@@ -97,7 +95,7 @@ namespace SFA.DAS.Roatp.CourseManagement.Jobs
                  .SetHandlerLifetime(handlerLifeTime);
         
         
-             builder.Services.AddHttpClient<IRoatpV2UpdateCourseDetailsApiClient, RoatpV2UpdateCourseDetailsApiClient>((serviceProvider, httpClient) =>
+             builder.Services.AddHttpClient<IRoatpV2UpdateStandardDetailsApiClient, RoatpV2UpdateStandardDetailsApiClient>((serviceProvider, httpClient) =>
                  {
                       var roatpV2ApiConfiguration = serviceProvider.GetService<IOptions<RoatpV2ApiConfiguration>>().Value;
                       httpClient.BaseAddress = new Uri(roatpV2ApiConfiguration.Url);

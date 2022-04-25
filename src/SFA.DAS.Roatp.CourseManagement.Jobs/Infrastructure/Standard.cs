@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure
 {
-    public class Course
+    public class Standard
     {
         public string StandardUid { get; set; }
         public int LarsCode { get; set; }

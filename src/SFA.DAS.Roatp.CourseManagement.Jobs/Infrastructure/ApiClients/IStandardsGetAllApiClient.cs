@@ -2,8 +2,8 @@
 
 namespace SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients
 {
-    public interface ICoursesGetAllApiClient
+    public interface IStandardsGetAllApiClient
     {
-        Task<CourseList> GetAllCourses();
+        Task<StandardList> GetAllStandards();
     }
 }
