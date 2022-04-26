@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -60,6 +61,32 @@ namespace SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients
         /// <summary>
         /// HTTP POST to the specified URI
         /// </summary>
+        /// <param name="uri">The URI to the end point you wish to interact with.</param>
+        /// <returns>The HttpStatusCode, which is the responsibility of the caller to handle.</returns>
+        /// <exception cref="HttpRequestException">Thrown if something unexpected occurred when sending the request.</exception>
+        protected async Task<HttpStatusCode> Post<T>(string uri, T model)
+        {
+            var serializeObject = JsonConvert.SerializeObject(model);
+
+            try
+            {
+                using (var response = await _httpClient.PostAsync(new Uri(uri, UriKind.Relative),
+                    new StringContent(serializeObject, Encoding.UTF8, _contentType)))
+                {
+                    await LogErrorIfUnsuccessfulResponse(response);
+                    return response.StatusCode;
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                _logger.LogError(ex, $"Error when processing request: {HttpMethod.Post} - {uri}");
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// HTTP POST to the specified URI
+        /// </summary>
         /// <typeparam name="T">The type of the object to POST.</typeparam>
         /// <typeparam name="U">The type of the object to read.</typeparam>
         /// <param name="uri">The URI to the end point you wish to interact with.</param>
@@ -107,6 +134,8 @@ namespace SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients
                 _logger.LogError($"Method: {callingMethod} || HTTP {statusCode} {reasonPhrase} || {httpMethod}: {requestUri} || Message: {apiErrorMessage}");
             }
         }
+
+       
 
         private static bool TryParseJson<T>(string json, out T result)
         {

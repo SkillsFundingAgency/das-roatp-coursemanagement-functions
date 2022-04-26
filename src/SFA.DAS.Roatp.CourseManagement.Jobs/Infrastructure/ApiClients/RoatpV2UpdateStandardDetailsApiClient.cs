@@ -1,5 +1,7 @@
-﻿using System.Net.Http;
+﻿using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.RoatpV2;
 
@@ -12,10 +14,10 @@ namespace SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients
         {
         }
 
-        public async  Task<bool> ReloadStandardsDetails(StandardsRequest standardsRequest)
+        public async  Task<HttpStatusCode> ReloadStandardsDetails(StandardsRequest standardsRequest)
         {
             var url = "ReloadStandardsData";
-           return await Post<StandardsRequest, bool>(url, standardsRequest);
+           return  await Post<StandardsRequest>(url, standardsRequest);
         }
     }
 }

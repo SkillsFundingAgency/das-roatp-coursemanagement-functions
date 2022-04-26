@@ -1,4 +1,5 @@
 using System;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Configuration;
@@ -32,12 +33,17 @@ namespace SFA.DAS.Roatp.CourseManagement.Jobs
             )] TimerInfo myTimer, ILogger log)
         {
 
-            log.LogInformation($"ReloadStandardsCache function executed at: {DateTime.Now}");
+            log.LogInformation($"ReloadStandardsCache function started");
 
             var standardList = await _standardsGetAllApiClient.GetAllStandards();
             var standardsRequest = new StandardsRequest { Standards = standardList.Standards };
             var result = await _roatpV2UpdateStandardDetailsApiClient.ReloadStandardsDetails(standardsRequest);
-
+            if (result == HttpStatusCode.OK)
+                log.LogInformation($"ReloadStandardsCache function completed");
+            else
+            {
+                log.LogError($"ReloadStandardsCache function failed", result);
+            }
         }
     }
 }

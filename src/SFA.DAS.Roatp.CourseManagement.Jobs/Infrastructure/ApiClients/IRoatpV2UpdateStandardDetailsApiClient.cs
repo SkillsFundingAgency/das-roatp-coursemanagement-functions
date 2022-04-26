@@ -1,10 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using System.Net;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.RoatpV2;
 
 namespace SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients
 {
     public interface IRoatpV2UpdateStandardDetailsApiClient
     {
-        Task<bool> ReloadStandardsDetails(StandardsRequest standardsRequest);
+        Task<HttpStatusCode> ReloadStandardsDetails(StandardsRequest standardsRequest);
     }
 }
