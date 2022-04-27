@@ -1,4 +1,4 @@
-﻿namespace SFA.DAS.Roatp.CourseManagement.Jobs.Functions
+﻿namespace SFA.DAS.Roatp.CourseManagement.Jobs.Configuration
 {
     public class CoursesApiConfiguration
     {

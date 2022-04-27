@@ -1,4 +1,4 @@
-﻿namespace SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure
+﻿namespace SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients.StandardsApi.Models
 {
     public class Standard
     {

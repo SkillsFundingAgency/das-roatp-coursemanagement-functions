@@ -1,19 +1,19 @@
-﻿using Microsoft.ApplicationInsights.NLogTarget;
+﻿using System;
+using System.IO;
+using Microsoft.ApplicationInsights.NLogTarget;
 using NLog;
 using NLog.Common;
 using NLog.Config;
 using NLog.Targets;
 using SFA.DAS.NLog.Targets.Redis.DotNetCore;
-using System;
-using System.IO;
 
-namespace SFA.DAS.Roatp.CourseManagement.Jobs
+namespace SFA.DAS.Roatp.CourseManagement.Jobs.Configuration
 {
     public static class NLogConfiguration
     {
         public static void ConfigureNLog()
         {
-            var appName = "das-roatp-coursemanagement-functions";
+            var appName = "das-roatp-coursemanagement-jobs";
             var env = Environment.GetEnvironmentVariable("EnvironmentName");
             var config = new LoggingConfiguration();
 

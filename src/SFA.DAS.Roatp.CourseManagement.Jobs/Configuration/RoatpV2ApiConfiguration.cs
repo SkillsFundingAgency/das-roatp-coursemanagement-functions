@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SFA.DAS.Roatp.CourseManagement.Jobs.Functions
+﻿namespace SFA.DAS.Roatp.CourseManagement.Jobs.Configuration
 {
     public class RoatpV2ApiConfiguration
     {

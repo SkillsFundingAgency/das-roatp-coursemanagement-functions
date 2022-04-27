@@ -8,8 +8,9 @@ using Microsoft.Extensions.Options;
 using NLog.Extensions.Logging;
 using SFA.DAS.Configuration.AzureTableStorage;
 using SFA.DAS.Roatp.CourseManagement.Jobs;
-using SFA.DAS.Roatp.CourseManagement.Jobs.Functions;
-using SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients;
+using SFA.DAS.Roatp.CourseManagement.Jobs.Configuration;
+using SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients.RoatpV2Api;
+using SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients.StandardsApi;
 using SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.Tokens;
 
 
@@ -18,11 +19,9 @@ namespace SFA.DAS.Roatp.CourseManagement.Jobs
 {
     internal class Startup : FunctionsStartup
     {
-        private IConfiguration _configuration;
-
         public override void Configure(IFunctionsHostBuilder builder)
         {
-            _configuration = BuildConfiguration(builder);
+            BuildConfiguration(builder);
             BuildHttpClients(builder);
             AddNLog(builder);
         }
@@ -50,8 +49,6 @@ namespace SFA.DAS.Roatp.CourseManagement.Jobs
          
             var configBuilder = new ConfigurationBuilder()
                 .AddConfiguration(configuration);
-
-            var env = configuration["EnvironmentName"];
             
             configBuilder.AddAzureTableStorage(options =>
                 {

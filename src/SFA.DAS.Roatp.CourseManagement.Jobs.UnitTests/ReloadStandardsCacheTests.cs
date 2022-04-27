@@ -7,9 +7,13 @@ using Microsoft.Azure.WebJobs.Extensions.Timers;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
+using SFA.DAS.Roatp.CourseManagement.Jobs.Functions;
 using SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure;
 using SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients;
-using SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.RoatpV2;
+using SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients.RoatpV2Api;
+using SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients.RoatpV2Api.Models;
+using SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients.StandardsApi;
+using SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients.StandardsApi.Models;
 
 namespace SFA.DAS.Roatp.CourseManagement.Jobs.UnitTests
 {
@@ -17,17 +21,17 @@ namespace SFA.DAS.Roatp.CourseManagement.Jobs.UnitTests
     {
         private Mock<IStandardsGetAllApiClient> _standardsGetAllApiClient;
         private Mock<IRoatpV2UpdateStandardDetailsApiClient> _roatpV2UpdateStandardDetailsApiClient;
-        private Mock<ILogger<ReloadStandardsCache>> _logger;
-        private ReloadStandardsCache _function;
+        private Mock<ILogger<ReloadStandardsCacheFunction>> _logger;
+        private ReloadStandardsCacheFunction _function;
 
 
         [SetUp]
         public void Setup()
         {
-            _logger = new Mock<ILogger<ReloadStandardsCache>>();
+            _logger = new Mock<ILogger<ReloadStandardsCacheFunction>>();
             _standardsGetAllApiClient = new Mock<IStandardsGetAllApiClient>();
             _roatpV2UpdateStandardDetailsApiClient = new Mock<IRoatpV2UpdateStandardDetailsApiClient>();
-            _function = new ReloadStandardsCache(_standardsGetAllApiClient.Object, _roatpV2UpdateStandardDetailsApiClient.Object);
+            _function = new ReloadStandardsCacheFunction(_standardsGetAllApiClient.Object, _roatpV2UpdateStandardDetailsApiClient.Object);
         }
 
         [Test]

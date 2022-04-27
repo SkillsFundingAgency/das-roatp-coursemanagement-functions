@@ -1,9 +1,8 @@
 ﻿using System.Net;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.RoatpV2;
+using SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients.RoatpV2Api.Models;
 
-namespace SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients
+namespace SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients.RoatpV2Api
 {
     public interface IRoatpV2UpdateStandardDetailsApiClient
     {
