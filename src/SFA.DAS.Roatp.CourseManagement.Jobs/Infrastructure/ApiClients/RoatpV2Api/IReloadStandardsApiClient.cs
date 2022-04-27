@@ -4,7 +4,7 @@ using SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients.RoatpV2Api.M
 
 namespace SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients.RoatpV2Api
 {
-    public interface IRoatpV2UpdateStandardDetailsApiClient
+    public interface IReloadStandardsApiClient
     {
         Task<HttpStatusCode> ReloadStandardsDetails(StandardsRequest standardsRequest);
     }

@@ -6,9 +6,9 @@ using SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients.RoatpV2Api.M
 
 namespace SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients.RoatpV2Api
 {
-    public class RoatpV2UpdateStandardDetailsApiClient : ApiClientBase<RoatpV2UpdateStandardDetailsApiClient>, IRoatpV2UpdateStandardDetailsApiClient
+    public class ReloadStandardsApiClient : ApiClientBase<ReloadStandardsApiClient>, IReloadStandardsApiClient
     {
-        public RoatpV2UpdateStandardDetailsApiClient(HttpClient client, ILogger<RoatpV2UpdateStandardDetailsApiClient> logger)
+        public ReloadStandardsApiClient(HttpClient client, ILogger<ReloadStandardsApiClient> logger)
             : base(client, logger)
         {
         }

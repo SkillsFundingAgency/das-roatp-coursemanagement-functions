@@ -3,7 +3,7 @@ using SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients.StandardsApi
 
 namespace SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients.StandardsApi
 {
-    public interface IStandardsGetAllApiClient
+    public interface IGetAllStandardsApiClient
     {
         Task<StandardList> GetAllStandards();
     }

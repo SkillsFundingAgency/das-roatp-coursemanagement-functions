@@ -19,8 +19,8 @@ namespace SFA.DAS.Roatp.CourseManagement.Jobs.UnitTests
 {
     public class ReloadStandardsCacheTests
     {
-        private Mock<IStandardsGetAllApiClient> _standardsGetAllApiClient;
-        private Mock<IRoatpV2UpdateStandardDetailsApiClient> _roatpV2UpdateStandardDetailsApiClient;
+        private Mock<IGetAllStandardsApiClient> _standardsGetAllApiClient;
+        private Mock<IReloadStandardsApiClient> _roatpV2UpdateStandardDetailsApiClient;
         private Mock<ILogger<ReloadStandardsCacheFunction>> _logger;
         private ReloadStandardsCacheFunction _function;
 
@@ -29,8 +29,8 @@ namespace SFA.DAS.Roatp.CourseManagement.Jobs.UnitTests
         public void Setup()
         {
             _logger = new Mock<ILogger<ReloadStandardsCacheFunction>>();
-            _standardsGetAllApiClient = new Mock<IStandardsGetAllApiClient>();
-            _roatpV2UpdateStandardDetailsApiClient = new Mock<IRoatpV2UpdateStandardDetailsApiClient>();
+            _standardsGetAllApiClient = new Mock<IGetAllStandardsApiClient>();
+            _roatpV2UpdateStandardDetailsApiClient = new Mock<IReloadStandardsApiClient>();
             _function = new ReloadStandardsCacheFunction(_standardsGetAllApiClient.Object, _roatpV2UpdateStandardDetailsApiClient.Object);
         }
 

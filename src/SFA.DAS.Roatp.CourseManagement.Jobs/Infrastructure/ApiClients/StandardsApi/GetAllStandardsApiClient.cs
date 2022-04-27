@@ -5,9 +5,9 @@ using SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients.StandardsApi
 
 namespace SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients.StandardsApi
 {
-    public class StandardsGetAllApiClient : ApiClientBase<StandardsGetAllApiClient>, IStandardsGetAllApiClient
+    public class GetAllStandardsApiClient : ApiClientBase<GetAllStandardsApiClient>, IGetAllStandardsApiClient
     {
-        public StandardsGetAllApiClient(HttpClient client, ILogger<StandardsGetAllApiClient> logger)
+        public GetAllStandardsApiClient(HttpClient client, ILogger<GetAllStandardsApiClient> logger)
             : base(client, logger)
         {
         }
