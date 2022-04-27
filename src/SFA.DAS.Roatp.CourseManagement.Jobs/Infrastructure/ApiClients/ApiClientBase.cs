@@ -135,8 +135,6 @@ namespace SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients
             }
         }
 
-       
-
         private static bool TryParseJson<T>(string json, out T result)
         {
             try

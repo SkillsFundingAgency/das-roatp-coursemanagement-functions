@@ -93,8 +93,7 @@ namespace SFA.DAS.Roatp.CourseManagement.Jobs
                      }
                  })
                  .SetHandlerLifetime(handlerLifeTime);
-        
-        
+             
              builder.Services.AddHttpClient<IRoatpV2UpdateStandardDetailsApiClient, RoatpV2UpdateStandardDetailsApiClient>((serviceProvider, httpClient) =>
                  {
                       var roatpV2ApiConfiguration = serviceProvider.GetService<IOptions<RoatpV2ApiConfiguration>>().Value;
