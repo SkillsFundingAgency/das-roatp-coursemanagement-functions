@@ -43,7 +43,7 @@ namespace SFA.DAS.Roatp.CourseManagement.Jobs
             });
         }
 
-        private static IConfiguration BuildConfiguration(IFunctionsHostBuilder builder)
+        private static void BuildConfiguration(IFunctionsHostBuilder builder)
         {
             var configuration = builder.GetContext().Configuration;
          
