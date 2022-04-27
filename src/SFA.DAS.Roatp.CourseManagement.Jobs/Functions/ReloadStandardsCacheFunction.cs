@@ -2,7 +2,6 @@ using System.Net;
 using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
-using SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients;
 using SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients.RoatpV2Api;
 using SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients.RoatpV2Api.Models;
 using SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients.StandardsApi;
@@ -23,11 +22,7 @@ namespace SFA.DAS.Roatp.CourseManagement.Jobs.Functions
 
 
         [FunctionName(nameof(ReloadStandardsCacheFunction))]
-        public  async Task Run([TimerTrigger("%ReloadStandardsCacheSchedule%"
-    #if DEBUG
-                , RunOnStartup=true
-    #endif
-            )] TimerInfo myTimer, ILogger log)
+        public  async Task Run([TimerTrigger("%ReloadStandardsCacheSchedule%")] TimerInfo myTimer, ILogger log)
         {
 
             log.LogInformation($"ReloadStandardsCacheFunction function started");

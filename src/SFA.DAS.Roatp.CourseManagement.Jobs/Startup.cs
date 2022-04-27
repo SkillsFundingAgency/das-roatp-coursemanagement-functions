@@ -64,8 +64,6 @@ namespace SFA.DAS.Roatp.CourseManagement.Jobs
 
             builder.Services.Configure<RoatpV2ApiConfiguration>(config.GetSection(nameof(RoatpV2ApiConfiguration)));
             builder.Services.Configure<CoursesApiConfiguration>(config.GetSection(nameof(CoursesApiConfiguration)));
-
-            return config;
         }
 
          private static void BuildHttpClients(IFunctionsHostBuilder builder)
