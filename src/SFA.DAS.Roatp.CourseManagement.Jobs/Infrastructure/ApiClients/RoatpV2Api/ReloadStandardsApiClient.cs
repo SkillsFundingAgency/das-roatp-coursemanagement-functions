@@ -16,7 +16,7 @@ namespace SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients.RoatpV2A
         public async  Task<HttpStatusCode> ReloadStandardsDetails(StandardsRequest standardsRequest)
         {
             var url = "ReloadStandardsData";
-           return  await Post<StandardsRequest>(url, standardsRequest);
+           return  await Post(url, standardsRequest);
         }
     }
 }
