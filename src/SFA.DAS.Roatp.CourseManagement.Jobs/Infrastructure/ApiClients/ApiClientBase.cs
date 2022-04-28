@@ -46,8 +46,14 @@ namespace SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients
             {
                 using (var response = await _httpClient.GetAsync(new Uri(uri, UriKind.Relative)))
                 {
+                   
                     await LogErrorIfUnsuccessfulResponse(response);
-                    return await response.Content.ReadAsAsync<T>();
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return await response.Content.ReadAsAsync<T>();
+                    }
+                    return default;
+
                 }
             }
             catch (HttpRequestException ex)
@@ -74,34 +80,6 @@ namespace SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients
                 {
                     await LogErrorIfUnsuccessfulResponse(response);
                     return response.StatusCode;
-                }
-            }
-            catch (HttpRequestException ex)
-            {
-                _logger.LogError(ex, $"Error when processing request: {HttpMethod.Post} - {uri}");
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// HTTP POST to the specified URI
-        /// </summary>
-        /// <typeparam name="T">The type of the object to POST.</typeparam>
-        /// <typeparam name="U">The type of the object to read.</typeparam>
-        /// <param name="uri">The URI to the end point you wish to interact with.</param>
-        /// <returns>A Task yielding the result (of type U).</returns>
-        /// <exception cref="HttpRequestException">Thrown if something unexpected occurred when sending the request.</exception>
-        protected async Task<U> Post<T, U>(string uri, T model)
-        {
-            var serializeObject = JsonConvert.SerializeObject(model);
-
-            try
-            {
-                using (var response = await _httpClient.PostAsync(new Uri(uri, UriKind.Relative),
-                    new StringContent(serializeObject, Encoding.UTF8, _contentType)))
-                {
-                    await LogErrorIfUnsuccessfulResponse(response);
-                    return await response.Content.ReadAsAsync<U>();
                 }
             }
             catch (HttpRequestException ex)
