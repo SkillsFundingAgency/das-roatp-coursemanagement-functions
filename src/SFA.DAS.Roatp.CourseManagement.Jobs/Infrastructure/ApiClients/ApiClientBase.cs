@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.Firewall;
 
 namespace SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients
 {
@@ -126,28 +125,9 @@ namespace SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients
                 var responseContent = await response.Content.ReadAsStringAsync();
                 var apiErrorMessage = responseContent;
 
-                if (TryParseJson<ApiError>(responseContent, out var apiError) && !string.IsNullOrWhiteSpace(apiError?.Message))
-                {
-                    apiErrorMessage = apiError.Message;
-                }
-
                 _logger.LogError($"Method: {callingMethod} || HTTP {statusCode} {reasonPhrase} || {httpMethod}: {requestUri} || Message: {apiErrorMessage}");
             }
         }
-
-        private static bool TryParseJson<T>(string json, out T result)
-        {
-            try
-            {
-                result = JsonConvert.DeserializeObject<T>(json);
-                return true;
-            }
-            catch (JsonException)
-            {
-                // The JSON is a different type
-                result = default;
-                return false;
-            }
-        }
+        
     }
 }

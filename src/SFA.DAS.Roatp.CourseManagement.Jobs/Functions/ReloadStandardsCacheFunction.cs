@@ -10,13 +10,13 @@ namespace SFA.DAS.Roatp.CourseManagement.Jobs.Functions
 {
     public  class ReloadStandardsCacheFunction
     {
-        private readonly IGetAllStandardsApiClient _getAllStandardsApiClient;
+        private readonly IGetActiveStandardsApiClient _getActiveStandardsApiClient;
         private readonly IReloadStandardsApiClient _reloadStandardsApiClient;
 
 
-        public ReloadStandardsCacheFunction(IGetAllStandardsApiClient getAllStandardsApiClient, IReloadStandardsApiClient reloadStandardsApiClient)
+        public ReloadStandardsCacheFunction(IGetActiveStandardsApiClient getActiveStandardsApiClient, IReloadStandardsApiClient reloadStandardsApiClient)
         {
-            _getAllStandardsApiClient = getAllStandardsApiClient;
+            _getActiveStandardsApiClient = getActiveStandardsApiClient;
             _reloadStandardsApiClient = reloadStandardsApiClient;
         }
 
@@ -27,7 +27,7 @@ namespace SFA.DAS.Roatp.CourseManagement.Jobs.Functions
 
             log.LogInformation($"ReloadStandardsCacheFunction function started");
 
-            var standardList = await _getAllStandardsApiClient.GetAllStandards();
+            var standardList = await _getActiveStandardsApiClient.GetActiveStandards();
             var standardsRequest = new StandardsRequest { Standards = standardList.Standards };
             var result = await _reloadStandardsApiClient.ReloadStandardsDetails(standardsRequest);
             if (result == HttpStatusCode.OK)

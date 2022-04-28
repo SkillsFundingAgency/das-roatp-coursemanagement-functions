@@ -72,7 +72,7 @@ namespace SFA.DAS.Roatp.CourseManagement.Jobs
              var acceptHeaderValue = "application/json";
              var handlerLifeTime = TimeSpan.FromMinutes(5);
         
-             builder.Services.AddHttpClient<IGetAllStandardsApiClient, GetAllStandardsApiClient>((serviceProvider, httpClient) =>
+             builder.Services.AddHttpClient<IGetActiveStandardsApiClient, GetActiveStandardsApiClient>((serviceProvider, httpClient) =>
                  {
                      var coursesApiConfiguration = serviceProvider.GetService<IOptions<CoursesApiConfiguration>>().Value;
                      httpClient.BaseAddress = new Uri(coursesApiConfiguration.Url);
