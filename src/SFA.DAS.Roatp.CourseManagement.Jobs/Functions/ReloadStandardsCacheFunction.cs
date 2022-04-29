@@ -28,6 +28,12 @@ namespace SFA.DAS.Roatp.CourseManagement.Jobs.Functions
             log.LogInformation($"ReloadStandardsCacheFunction function started");
 
             var standardList = await _getActiveStandardsApiClient.GetActiveStandards();
+            if (standardList==null)
+            {
+                log.LogError($"ReloadStandardsCacheFunction function failed to get active standards");
+                return;
+            }
+
             var standardsRequest = new StandardsRequest { Standards = standardList.Standards };
             var result = await _reloadStandardsApiClient.ReloadStandardsDetails(standardsRequest);
             if (result == HttpStatusCode.OK)
@@ -36,6 +42,7 @@ namespace SFA.DAS.Roatp.CourseManagement.Jobs.Functions
             {
                 log.LogError($"ReloadStandardsCacheFunction function failed", result);
             }
+            
         }
     }
 }

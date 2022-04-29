@@ -72,5 +72,18 @@ namespace SFA.DAS.Roatp.CourseManagement.Jobs.UnitTests.Functions
             _logger.Verify(x => x.Log(LogLevel.Information, It.IsAny<EventId>(), It.IsAny<It.IsAnyType>(), It.IsAny<Exception>(), It.IsAny<Func<It.IsAnyType, Exception, string>>()), Times.Once);
             _logger.Verify(x => x.Log(LogLevel.Error, It.IsAny<EventId>(), It.IsAny<It.IsAnyType>(), It.IsAny<Exception>(), It.IsAny<Func<It.IsAnyType, Exception, string>>()), Times.Once);
         }
+
+        [Test]
+        public async Task Unsuccessful_StandardListNotReturned_LogsErrorMessage()
+        {
+            _standardsGetAllActiveApiClient.Setup(x => x.GetActiveStandards()).ReturnsAsync((StandardList)null);
+
+            var timerInfo = new TimerInfo(new ConstantSchedule(TimeSpan.Zero), new ScheduleStatus(), true);
+            await _function.Run(timerInfo, _logger.Object);
+            _standardsGetAllActiveApiClient.Verify(x => x.GetActiveStandards(), Times.Once);
+            _roatpV2UpdateStandardDetailsApiClient.Verify(x => x.ReloadStandardsDetails(It.IsAny<StandardsRequest>()), Times.Never);
+            _logger.Verify(x => x.Log(LogLevel.Information, It.IsAny<EventId>(), It.IsAny<It.IsAnyType>(), It.IsAny<Exception>(), It.IsAny<Func<It.IsAnyType, Exception, string>>()), Times.Once);
+            _logger.Verify(x => x.Log(LogLevel.Error, It.IsAny<EventId>(), It.IsAny<It.IsAnyType>(), It.IsAny<Exception>(), It.IsAny<Func<It.IsAnyType, Exception, string>>()), Times.Once);
+        }
     }
 }
