@@ -1,9 +1,11 @@
-﻿using System.Net.Http.Headers;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.Azure.Services.AppAuthentication;
 
 namespace SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.Tokens
 {
+    [ExcludeFromCodeCoverage]
     public static class BearerTokenGenerator
     {
         private const string JwtBearerScheme = "Bearer";

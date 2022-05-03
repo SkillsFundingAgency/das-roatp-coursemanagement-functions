@@ -22,7 +22,12 @@ namespace SFA.DAS.Roatp.CourseManagement.Jobs.Functions
 
 
         [FunctionName(nameof(ReloadStandardsCacheFunction))]
-        public  async Task Run([TimerTrigger("%ReloadStandardsCacheSchedule%")] TimerInfo myTimer, ILogger log)
+        public  async Task Run([TimerTrigger("%ReloadStandardsCacheSchedule%"
+#if DEBUG
+            , RunOnStartup=true
+#endif
+        
+        )] TimerInfo myTimer, ILogger log)
         {
 
             log.LogInformation($"ReloadStandardsCacheFunction function started");

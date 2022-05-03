@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -14,6 +15,7 @@ namespace SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients
     /// Please read documentation on all methods.
     /// </summary>
     /// <typeparam name="AC">The inherited ApiClient.</typeparam>
+    [ExcludeFromCodeCoverage]
     public abstract class ApiClientBase<AC>
     {
         protected const string _acceptHeaderName = "Accept";
