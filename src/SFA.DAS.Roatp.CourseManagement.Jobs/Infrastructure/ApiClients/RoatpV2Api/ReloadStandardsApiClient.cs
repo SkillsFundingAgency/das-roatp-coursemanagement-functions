@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
@@ -6,6 +7,7 @@ using SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients.RoatpV2Api.M
 
 namespace SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients.RoatpV2Api
 {
+    [ExcludeFromCodeCoverage]
     public class ReloadStandardsApiClient : ApiClientBase<ReloadStandardsApiClient>, IReloadStandardsApiClient
     {
         public ReloadStandardsApiClient(HttpClient client, ILogger<ReloadStandardsApiClient> logger)

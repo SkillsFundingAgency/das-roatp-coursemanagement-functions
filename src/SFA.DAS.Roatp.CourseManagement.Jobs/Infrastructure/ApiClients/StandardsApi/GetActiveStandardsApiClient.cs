@@ -1,10 +1,12 @@
-﻿using System.Net.Http;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients.StandardsApi.Models;
 
 namespace SFA.DAS.Roatp.CourseManagement.Jobs.Infrastructure.ApiClients.StandardsApi
 {
+    [ExcludeFromCodeCoverage]
     public class GetActiveStandardsApiClient : ApiClientBase<GetActiveStandardsApiClient>, IGetActiveStandardsApiClient
     {
         public GetActiveStandardsApiClient(HttpClient client, ILogger<GetActiveStandardsApiClient> logger)
